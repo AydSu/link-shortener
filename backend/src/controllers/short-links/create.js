@@ -24,7 +24,7 @@ export async function shortLinkCreateController(req, res){
         const shortLink = await createShortLink({userId, longLink: req.body.longLink}, {db: appDb})
         await cacheLongLinkByShortLink({shortLink, longLink: req.body.longLink, userId}, {redis})
 
-        return res.send(shortLink)
+        return res.json({shortLink})
     } catch(e){
         logger.error(e)
         if (Boom.isBoom(e)){

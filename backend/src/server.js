@@ -6,6 +6,7 @@ import qs from 'qs';
 import { appDb } from './lib/mongodb';
 
 import { getRouter } from "./routes"
+import cors from 'cors'
 
 async function createServer(){
   try{
@@ -14,6 +15,7 @@ async function createServer(){
 
   await appDb.connect();
 
+  app.use(cors()) 
   app.set('query parser', (str) => {
     return qs.parse(str, { arrayLimit: Infinity });
   });

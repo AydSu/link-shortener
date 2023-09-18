@@ -1,0 +1,9 @@
+version: "3"
+services:
+  web: 
+    image: mongo:latest
+    container_name: mymongo
+    volumes:
+      - ../mongo_db:/data/db
+    ports:
+      - 2717:27017
