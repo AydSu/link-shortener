@@ -1,9 +1,15 @@
 version: "3"
 services:
-  web: 
+  mongo-service: 
     image: mongo:latest
     container_name: mymongo
     volumes:
       - ../mongo_db:/data/db
     ports:
       - 2717:27017
+
+  redis-service: 
+    image: redis:latest
+    container_name: some-redis
+    ports:
+      - 6379:6379
