@@ -12,7 +12,7 @@ export const LinkShortener = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/short-links', { longLink: longLink });
+            const response = await axios.post('http://localhost:5000/short-links', { longLink: longLink }, {withCredentials: true});
             console.log(response);
             setShortLink(response.data.shortLink);
         } catch (error) {
