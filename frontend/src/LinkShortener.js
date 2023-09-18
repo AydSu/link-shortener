@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "./LinkShortener.css"
 
+const backendApiUrl = 'http://localhost:5000/short-links'
+
 export const LinkShortener = () => {
     const [longLink, setLongLink] = useState('');
     const [shortLink, setShortLink] = useState('');
@@ -12,9 +14,8 @@ export const LinkShortener = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/short-links', { longLink: longLink }, {withCredentials: true});
-            console.log(response);
-            setShortLink(response.data.shortLink);
+            const response = await axios.post(backendApiUrl, { longLink: longLink }, {withCredentials: true});
+            setShortLink(`${backendApiUrl}/${response.data.shortLink}`);
         } catch (error) {
             console.error('Error shortening the link:', error);
         }
